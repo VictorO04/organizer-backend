@@ -6,3 +6,16 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model jogos {
+  id              Int       @id @default(autoincrement())
+  igdb_id         Int       @unique
+  nome            String    @db.VarChar(255)
+  slug            String?   @db.VarChar(255)
+  resumo          String?
+  data_lancamento DateTime? @db.Date
+  capa_url        String?
+  banner_url      String?
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  updated_at      DateTime? @default(now()) @db.Timestamp(6)
+}
