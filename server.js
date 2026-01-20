@@ -1,16 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
+import gamesRoutes from "./src/routes/gamesRoutes.js";
 
 const app = express();
 app.use(express.json());
 
 dotenv.config();
-const portaServidor = process.env.PORT;
+const serverPort = process.env.PORT;
 
 app.get("/", (req, res) => {
-    res.send("Servidor online");
+    res.send("Server online");
 });
 
-app.listen(portaServidor, () => {
-    console.log(`🚀 Servidor aberto em: http://localhost:${portaServidor}`);
+app.use("/games", gamesRoutes);
+
+app.listen(serverPort, () => {
+    console.log(`🚀 Server online at: http://localhost:${serverPort}`);
 });

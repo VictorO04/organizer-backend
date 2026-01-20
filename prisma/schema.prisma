@@ -7,15 +7,15 @@ datasource db {
   provider = "postgresql"
 }
 
-model jogos {
+model games {
   id              Int       @id @default(autoincrement())
   igdb_id         Int       @unique
-  nome            String    @db.VarChar(255)
+  name            String    @db.VarChar(255)
   slug            String?   @db.VarChar(255)
-  resumo          String?
-  data_lancamento DateTime? @db.Date
-  capa_url        String?
-  banner_url      String?
+  summary          String?
+  release_date DateTime? @db.Date
+  cover_url        String?
+  artwork_url      String?
   created_at      DateTime? @default(now()) @db.Timestamp(6)
   updated_at      DateTime? @default(now()) @db.Timestamp(6)
 }
