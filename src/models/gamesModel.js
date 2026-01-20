@@ -9,3 +9,9 @@ export const findIgdbId = async (igdbID) => {
 export const createGame = async (data) => {
     return await prisma.games.create({ data });
 }
+
+export const findGames = async () => {
+    return await prisma.games.findMany({
+        orderBy: { name: "asc" }
+    });
+}

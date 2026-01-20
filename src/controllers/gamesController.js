@@ -77,3 +77,27 @@ export const importGame = async (req, res) => {
         });
     }
 }
+
+const serverErrorMessage = (res, error) => {
+    console.error(error);
+
+    return res.status(500).json({
+        mensagem: "Erro interno do servidor"
+    });
+}
+
+export const getGames = async (req, res) => {
+    try {
+        const games = await gamesModel.findGames();
+
+        res.status(200).json({
+            total: games.length,
+            message: games.length === 0
+                ? "No games registered"
+                : "Games found successfully",
+            data: games
+        });
+    } catch (error) {
+        return serverErrorMessage(res, error);
+    }
+}
